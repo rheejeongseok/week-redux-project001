@@ -1,9 +1,10 @@
-import {FETCH_CATEGORY, FETCH_CATE_FOOD, FETCH_FOOD_DETAIL} from "../actions/types";
+import {FETCH_CATEGORY, FETCH_CATE_FOOD, FETCH_FOOD_DETAIL, FETCH_CATE_INFO} from "../actions/types";
 
 const initState = {
     category:[],
     cate_food:[],
-    food_detail:{}
+    food_detail:{},
+    cate_info:{}
 }
 
 /*
@@ -33,6 +34,11 @@ export default function(state=initState, action){
             return {
                 ...state,
                 food_detail:action.payload
+            }
+        case FETCH_CATE_INFO:
+            return {
+                ...state,
+                cate_info:action.payload
             }
         default:
             return state

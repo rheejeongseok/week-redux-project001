@@ -28,3 +28,45 @@ app.get('/category', (req, res) => {
             })
     })
 });
+
+app.get('/cate_food', (req, res) => {
+    let cno = req.query.cno;
+    let url = "mongodb://211.238.142.181:27017";
+    client.connect(url,(err,cli)=> {
+        let db = cli.db('mydb');
+        db.collection('food').find({cno:Number(cno)})
+            .toArray((err, docs) => {
+                // 요청한 사용자에게 데이터 전송
+                res.json(docs);
+                cli.close();
+            })
+    })
+});
+
+app.get('/cate_info', (req, res) => {
+    let cno = req.query.cno;
+    let url = "mongodb://211.238.142.181:27017";
+    client.connect(url,(err,cli)=> {
+        let db = cli.db('mydb');
+        db.collection('category').find({cateno:Number(cno)})
+            .toArray((err, docs) => {
+                // 요청한 사용자에게 데이터 전송
+                res.json(docs[0]);
+                cli.close();
+            })
+    })
+});
+
+app.get('/food_detail', (req, res) => {
+    let no = req.query.no;
+    let url = "mongodb://211.238.142.181:27017";
+    client.connect(url,(err,cli)=> {
+        let db = cli.db('mydb');
+        db.collection('food').find({no:Number(no)})
+            .toArray((err, docs) => {
+                // 요청한 사용자에게 데이터 전송
+                res.json(docs[0]);
+                cli.close();
+            })
+    })
+});
