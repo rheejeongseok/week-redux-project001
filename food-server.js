@@ -4,11 +4,18 @@ const express = require("express");
 const app = express();
 // 서버 구성
 
-app.all('/*', function(req, res, next) {
+/*app.all('/!*', function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "X-Requested-With");
     next();
-});
+});*/
+
+app.use('/',express.static('./public'));
+
+const path = require("path")
+app.get('/',(req, res) => {
+    res.sendFile(path.resolve(__dirname,"index.html"))
+})
 
 app.listen(3355,() => {
     console.log("http://localhost:3355/")

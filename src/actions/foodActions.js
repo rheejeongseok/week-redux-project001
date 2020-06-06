@@ -11,6 +11,7 @@ import axios from 'axios';
         return  state.foods.cate_info
     }
 * */
+/*
 
 export function fetchFoodDetail(no){
     return function (dispatch){
@@ -24,4 +25,16 @@ export function fetchFoodDetail(no){
             payload:rs.data
         }))
     }
+}
+*/
+
+export const fetchFoodDetail=(no)=>dispatch=>{
+    axios.get("http://localhost:3355/food_detail",{
+        params: {
+            no:no
+        }
+    }).then((rs) => dispatch({
+        type:FETCH_FOOD_DETAIL,
+        payload:rs.data
+    }))
 }
